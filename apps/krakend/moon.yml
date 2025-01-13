@@ -1,5 +1,0 @@
-tasks:
-  lint:
-    command: 'docker run -v .:/etc/krakend devopsfaith/krakend krakend check --config /etc/krakend/krakend.json --debug --lint'
-    inputs:
-      - '.'

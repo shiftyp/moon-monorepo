@@ -1,0 +1,11 @@
+:root {
+    --font-family: 'Roboto', sans-serif;
+    --primary-color: rgb(27, 82, 201);
+    --primary-color-text: rgb(255, 255, 255);
+    --primary-color-disabled: rgb(27, 82, 201);
+    --primary-color-disabled-text: rgb(216, 216, 216);
+}
+
+body {
+    font-family: var(--font-family);
+}

@@ -1,0 +1,29 @@
+@import url('../variables.css');
+
+.spinner {
+    position: relative;
+    border-radius: 5px;
+    background: var(--primary-color);
+    animation: wave 1s reverse infinite;
+    width: fit-content;
+    height: fit-content;
+    min-width: 1em;
+    min-height: 1em;
+}
+
+@keyframes wave {
+    0% {  box-shadow:
+        0 0 0 0px color(from var(--primary-color) xyz x y z / 1),
+        0 0 0 5px color(from var(--primary-color) xyz x y z / 0.6),
+        0 0 0 10px color(from var(--primary-color) xyz x y z / 0.4),
+        0 0 0 15px color(from var(--primary-color) xyz x y z / 0.2),
+        0 0 0 20px color(from var(--primary-color) xyz x y z / 0)
+    }
+    100% {  box-shadow:
+        0 0 0 20px color(from var(--primary-color) xyz x y z / 0),
+        0 0 0 15px color(from var(--primary-color) xyz x y z / 0.2),
+        0 0 0 10px color(from var(--primary-color) xyz x y z / 0.4),
+        0 0 0 5px color(from var(--primary-color) xyz x y z / 0.6),
+        0 0 0 0px color(from var(--primary-color) xyz x y z / 1)
+    }
+}
