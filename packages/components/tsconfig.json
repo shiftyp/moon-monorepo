@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true
   },
-  "include": ["src", "main.tsx", "config"]
+  "include": ["src", "main.tsx", "config", "../../apps/frontend/src/app/login-provider.tsx"]
 }

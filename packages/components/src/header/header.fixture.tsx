@@ -1,36 +1,51 @@
 import React from 'react'
-import { Header, LoginState } from './header'
+import { Header, LoginContext, LoginState } from './header'
 import './header.css'
 
 export default {
     'Logged Out Header': (
-        <Header
-            loginState={LoginState.LoggedOut}
-            doLogin={(username, password) => { console.log('doLogin', username, password) }}
-            doLogout={() => { console.log('doLogout') }}
-        />
+        <LoginContext.Provider value={{
+            userName: '',
+            doLogin: () => { },
+            doLogout: () => { },
+            loginState: LoginState.LoggedOut,
+            loginError: ''
+        }}>
+            <Header />
+        </LoginContext.Provider>
     ),
     'Login In Progress Header': (
-        <Header
-            loginState={LoginState.LoginInProgress}
-            doLogin={(username, password) => { console.log('doLogin', username, password) }}
-            doLogout={() => { console.log('doLogout') }}
-        />
+        <LoginContext.Provider value={{
+            userName: '',
+            doLogin: () => { },
+            doLogout: () => { },
+            loginState: LoginState.LoginInProgress,
+            loginError: ''
+        }}>
+
+            <Header />
+        </LoginContext.Provider>
     ),
     'Logged In Header': (
-        <Header
-            username='rkahn'
-            loginState={LoginState.LoggedIn}
-            doLogin={(username, password) => { console.log('doLogin', username, password) }}
-            doLogout={() => { console.log('doLogout') }}
-        />
+        <LoginContext.Provider value={{
+            userName: 'rkahn',
+            doLogin: () => { },
+            doLogout: () => { },
+            loginState: LoginState.LoggedIn,
+            loginError: ''
+        }}>
+            <Header />
+        </LoginContext.Provider>
     ),
     'Login Error Header': (
-        <Header
-            loginError="Bad Username Or Password"
-            loginState={LoginState.LoggedOut}
-            doLogin={(username, password) => { console.log('doLogin', username, password) }}
-            doLogout={() => { console.log('doLogout') }}
-        />
+        <LoginContext.Provider value={{
+            userName: '',
+            doLogin: () => { },
+            doLogout: () => { },
+            loginState: LoginState.LoggedOut,
+            loginError: 'Bad Username Or Password'
+        }}>
+            <Header />
+        </LoginContext.Provider>
     ),
 }

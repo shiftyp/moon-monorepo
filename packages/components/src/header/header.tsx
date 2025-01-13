@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react'
+"use client"
+
+import React, { useEffect, createContext, useContext } from 'react'
 import { ModalContainer, ModalContent } from '../modal/modal'
 import { LoginForm } from '../login-form/login-form'
 import { Button } from '../button/button'
+
+import './header.css'
 
 export enum LoginState {
     LoggedIn,
@@ -9,16 +13,29 @@ export enum LoginState {
     LoginInProgress
 }
 
-export type HeaderProps = {
-    username?: string
+export const LoginContext = createContext<{
+    userName: string,
+    doLogin: (username: string, password: string) => void,
+    doLogout: () => void,
     loginState: LoginState
-    doLogin: (username: string, password: string) => void
-    doLogout: () => void
-    loginError?: string
-}
+    loginError: string
+}>({
+    userName: '',
+    doLogin: () => { },
+    doLogout: () => { },
+    loginState: LoginState.LoggedOut,
+    loginError: ''
+})
 
-export const Header = ({ username, loginState, doLogin, doLogout, loginError }: HeaderProps) => {
+export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false)
+    const {
+        userName,
+        loginState,
+        loginError,
+        doLogin,
+        doLogout
+    } = useContext(LoginContext)
 
     useEffect(() => {
         if (loginState === LoginState.LoggedIn && isOpen) {
@@ -48,7 +65,7 @@ export const Header = ({ username, loginState, doLogin, doLogout, loginError }: 
                         )
                         : (
                             <>
-                                <span className="salutation">Hello {username}!</span>
+                                <span className="salutation">Hello {userName}!</span>
                                 <Button onClick={doLogout}>Logout</Button>
                             </>
                         )
