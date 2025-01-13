@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '../test-utils'
 import buttonFixture from "./button.fixture";
 import { Button } from './button';
 
-describe('Spinner', () => {
+describe('Button', () => {
     it('should render a button with content', async () => {
         await render(buttonFixture["Primary"])
         const button = screen.getByRole('button')
