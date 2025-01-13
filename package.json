@@ -3,6 +3,7 @@
     "workspaces": {
         "packages": [
             "./apps/frontend",
+            "./apps/user",
             "./packages/components"
         ]
     }
