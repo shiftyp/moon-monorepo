@@ -1,13 +1,12 @@
-# fly.toml app configuration file generated for auth-restless-thunder-1487 on 2025-01-14T02:34:22Z
+# fly.toml app configuration file generated for frontend-shy-wave-4643 on 2025-01-14T16:53:20Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'auth-restless-thunder-1487'
+app = 'frontend-shy-wave-4643'
 primary_region = 'ewr'
 
 [build]
-  dockerfile = /apps/frontend/Dockerfile
 
 [http_service]
   internal_port = 3000

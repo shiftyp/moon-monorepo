@@ -82,7 +82,7 @@ export const LoginProvider = ({ children }: PropsWithChildren) => {
             doLogin,
             doSignUp,
             doLogout,
-            loginError: ''
+            loginError,
         }}>
             {children}
         </LoginContext.Provider>
