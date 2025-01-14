@@ -7,7 +7,7 @@ describe('Login Form', () => {
     it('should render a username, password, and submit button', async () => {
         await render(loginFormFixtures['Basic Login'])
 
-        screen.getByLabelText(/Username/)
+        screen.getByLabelText(/Email/)
         screen.getByLabelText(/Password/)
         screen.getByRole('button', {
             name: 'Login'
@@ -30,7 +30,7 @@ describe('Login Form', () => {
     })
     it('should not submit when the form is spinning', async () => {
         const onSubmit = jest.fn()
-        await render(<LoginForm onSubmit={onSubmit} showSpinner={true}></LoginForm>)
+        await render(<LoginForm kind="login" onSubmit={onSubmit} showSpinner={true}></LoginForm>)
 
         const loginForm = screen.getByRole('form')
 
@@ -40,7 +40,7 @@ describe('Login Form', () => {
     })
     it('should submit the form passing username and password', async () => {
         const onSubmit = jest.fn()
-        await render(<LoginForm onSubmit={onSubmit}></LoginForm>)
+        await render(<LoginForm kind="login" onSubmit={onSubmit}></LoginForm>)
 
         const loginForm = screen.getByRole('form')
 
@@ -48,10 +48,10 @@ describe('Login Form', () => {
 
         expect(onSubmit).toHaveBeenCalledWith('', '')
 
-        const username = screen.getByLabelText(/Username/)
+        const username = screen.getByLabelText(/Email/)
         const password = screen.getByLabelText(/Password/)
 
-        fireEvent.change(username, { target: { value: 'Ryan' } })
+        fireEvent.change(username, { target: { value: 'ryan@example.com' } })
         fireEvent.change(password, { target: { value: 'Secret1234' } })
 
         fireEvent.submit(loginForm)

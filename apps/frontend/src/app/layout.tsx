@@ -16,6 +16,7 @@ export default function RootLayout({
       <body>
         <LoginProvider>
           <Header />
+          {children}
         </LoginProvider>
       </body>
     </html>

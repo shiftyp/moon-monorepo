@@ -16,30 +16,33 @@ export enum LoginState {
 export const LoginContext = createContext<{
     userName: string,
     doLogin: (username: string, password: string) => void,
+    doSignUp: (username: string, password: string) => void,
     doLogout: () => void,
     loginState: LoginState
     loginError: string
 }>({
     userName: '',
     doLogin: () => { },
+    doSignUp: () => { },
     doLogout: () => { },
     loginState: LoginState.LoggedOut,
     loginError: ''
 })
 
 export const Header = () => {
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [modal, setModal] = React.useState<'login' | 'signup' | null>(null)
     const {
         userName,
         loginState,
         loginError,
         doLogin,
-        doLogout
+        doSignUp,
+        doLogout,
     } = useContext(LoginContext)
 
     useEffect(() => {
-        if (loginState === LoginState.LoggedIn && isOpen) {
-            setIsOpen(false)
+        if (loginState === LoginState.LoggedIn && modal !== null) {
+            setModal(null)
         }
     }, [loginState])
 
@@ -53,15 +56,29 @@ export const Header = () => {
                 <div>
                     {loginState === LoginState.LoggedOut || loginState === LoginState.LoginInProgress
                         ? (
-                            <Button
-                                aria-haspopup={true}
-                                aria-controls="login-modal"
-                                onClick={() => {
-                                    setIsOpen(true)
-                                }}
-                            >
-                                Login
-                            </Button>
+                            <>
+                                <Button
+                                    aria-haspopup={true}
+                                    aria-controls="login-modal"
+                                    onClick={() => {
+                                        setModal('login')
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                                <Button
+                                    style={{
+                                        marginLeft: '1em'
+                                    }}
+                                    aria-haspopup={true}
+                                    aria-controls="login-modal"
+                                    onClick={() => {
+                                        setModal('signup')
+                                    }}
+                                >
+                                    Sign Up
+                                </Button>
+                            </>
                         )
                         : (
                             <>
@@ -72,10 +89,14 @@ export const Header = () => {
                     }
                 </div>
             </header>
-            <ModalContainer onClose={() => setIsOpen(false)} isOpen={isOpen}>
-                <ModalContent heading="Login" id="login-modal">
-                    <LoginForm onSubmit={(username, password) => {
-                        doLogin(username, password)
+            <ModalContainer onClose={() => setModal(null)} isOpen={modal !== null}>
+                <ModalContent heading={modal === 'signup' ? 'Sign Up' : 'Login'} id="login-modal">
+                    <LoginForm kind={modal !== null ? modal : 'login'} onSubmit={(username, password) => {
+                        if (modal === 'login') {
+                            doLogin(username, password)
+                        } else if (modal === 'signup') {
+                            doSignUp(username, password)
+                        }
                     }} showSpinner={loginState === LoginState.LoginInProgress} errorMessage={loginError} />
                 </ModalContent>
             </ModalContainer>

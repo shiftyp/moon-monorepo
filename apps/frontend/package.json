@@ -12,7 +12,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "next": "15.1.4",
-    "@moon-app/components": "*"
+    "@moon-app/components": "*",
+    "supertokens-web-js": "0.14.0"
   },
   "devDependencies": {
     "typescript": "^5",
