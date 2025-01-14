@@ -3,6 +3,7 @@ import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  pageExtensions: ['tsx', 'mdx'],
   async rewrites() {
     return [
       {
