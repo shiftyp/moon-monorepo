@@ -1,0 +1,53 @@
+@import url('../variables.css');
+
+.login-form-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 200px;
+}
+
+.login-form input {
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.login-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.login-button-container button:disabled {
+    background-color: var(--primary-color-disabled);
+    color: var(--primary-color-disabled-text);
+}
+
+.login-message-dialog {
+    min-height: 3.5em;
+}
+
+.login-form .error-message {
+    color: red;
+}
+
+.login-form .status-message {
+    color: var(--primary-color);
+}
